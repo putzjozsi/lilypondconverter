@@ -10,8 +10,6 @@ def getPitchName(pitch, accidental):
   if(pitch == 0):
     if(accidental == SHARP):
       return 'his'
-    if(accidental == DOUBLE_FLAT):
-      return 'deses'
     return 'c'
   if(pitch == 1):
     if(accidental == SHARP):
@@ -25,9 +23,13 @@ def getPitchName(pitch, accidental):
       return 'dis'
     if(accidental == FLAT):
       return 'es'
-  if(pitch == 4):
+  if(pitch == 4): 
+    if (accidental == FLAT):
+      return "fes"
     return 'e'
   if(pitch == 5):
+    if(accidental == SHARP):
+      return 'eis'
     return 'f'
   if(pitch == 6):
     if(accidental == SHARP):
@@ -49,6 +51,8 @@ def getPitchName(pitch, accidental):
     if(accidental == FLAT):
       return 'bes'
   if(pitch == 11):
+    if(accidental == FLAT):
+      return "ces"
     return 'h'
 
 def getAccidentalSymbol(accidental):
@@ -119,6 +123,7 @@ def getChord (chord):
 def convert (file) :
   root = ET.parse(file).getroot()
   print(root)
+  lilypondCode = ""
   for staff in root.findall('Score/Staff'):
       print("===============")    
       print("Staff " + staff.get('id'))
@@ -131,9 +136,10 @@ def convert (file) :
           for child in list(voice):
             if(child.tag == "Chord"):
               chord = getChord(child)
-              print(chord)
+              lilypondCode += chord + " "
            # if(child.tag == "Rest"):
              # print(child.tag)             
+  print(lilypondCode)
 
 convert('accidentals.mscx')
  
