@@ -66,12 +66,15 @@ def getAccidentalSymbol(accidental):
     
 def note2pitch(note, accidental):
   pitch = int(note) % 12
-  octave = int(int(note) / 12)
+  octave = int(int(note) / 12) # ezt hangnevbol kell kiszamolni
 
   accidentalSymbol = getAccidentalSymbol(accidental)
   pitchName = getPitchName(pitch, accidentalSymbol)
-
-  return "{0} {1} {2}".format(pitchName, octave, accidentalSymbol)
+ 
+  if(accidentalSymbol is None):
+    accidentalSymbol = ""
+  
+  return "{0}{1}".format(pitchName, accidentalSymbol)
 
 def getNote(note):
   pitches = note.findall('pitch')
@@ -89,18 +92,32 @@ def getNote(note):
   return pitchString
   
 
+def getDuration(durationType):
+  if(durationType == "whole"): return "1" 
+  if(durationType == "half"): return "2"
+  if(durationType == "quarter"): return "4"
+  if(durationType == "eighth"): return "8"
+  if(durationType == "16th"): return "16"
+  if(durationType == "32th"): return "32"
+  if(durationType == "64th"): return "64"
+  if(durationType == "128th"): return "128"
+
+
 def getChord (chord):
   result = " "
-  duration = chord.findall('durationType')
-  result += str(duration[0].text)
-
+  
   for note in chord.findall('Note'):
     noteString = getNote(note)
     result += " " + noteString
+  
+  durationType = chord.findall('durationType')
+  duration = getDuration(durationType[0].text)
+
+  result += str(duration)
   return result
 
-def convert () :
-  root = ET.parse('skala.mscx').getroot()
+def convert (file) :
+  root = ET.parse(file).getroot()
   print(root)
   for staff in root.findall('Score/Staff'):
       print("===============")    
@@ -118,7 +135,7 @@ def convert () :
            # if(child.tag == "Rest"):
              # print(child.tag)             
 
-convert()
+convert('accidentals.mscx')
  
 
 
