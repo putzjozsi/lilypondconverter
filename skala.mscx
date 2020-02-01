@@ -237,10 +237,10 @@
             <durationType>quarter</durationType>
             <Note>
               <Accidental>
-                <subtype>accidentalSharp</subtype>
+                <subtype>accidentalDoubleSharp</subtype>
                 </Accidental>
-              <pitch>61</pitch>
-              <tpc>21</tpc>
+              <pitch>62</pitch>
+              <tpc>28</tpc>
               </Note>
             </Chord>
           <Chord>
@@ -416,10 +416,10 @@
             <durationType>quarter</durationType>
             <Note>
               <Accidental>
-                <subtype>accidentalFlat</subtype>
+                <subtype>accidentalDoubleFlat</subtype>
                 </Accidental>
-              <pitch>59</pitch>
-              <tpc>7</tpc>
+              <pitch>58</pitch>
+              <tpc>0</tpc>
               </Note>
             </Chord>
           <Chord>

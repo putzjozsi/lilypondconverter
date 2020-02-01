@@ -1,24 +1,53 @@
 import xml.etree.ElementTree as ET
 
 SHARP = "#"
+DOUBLE_SHARP = "##"
 FLAT = "b"
+DOUBLE_FLAT = "bb"
 NATURAL = "n"
 
 def getPitchName(pitch, accidental):
   if(pitch == 0):
+    if(accidental == SHARP):
+      return 'his'
+    if(accidental == DOUBLE_FLAT):
+      return 'deses'
     return 'c'
   if(pitch == 1):
-    return 'cis'
+    if(accidental == SHARP):
+      return 'cis'
+    if(accidental == FLAT):
+      return 'des'
   if(pitch == 2):
     return 'd'
+  if(pitch == 3):
+    if(accidental == SHARP):
+      return 'dis'
+    if(accidental == FLAT):
+      return 'es'
   if(pitch == 4):
     return 'e'
   if(pitch == 5):
     return 'f'
+  if(pitch == 6):
+    if(accidental == SHARP):
+      return 'fis'
+    if(accidental == FLAT):
+      return 'ges'
   if(pitch == 7):
     return 'g'
+  if(pitch == 8):
+    if(accidental == SHARP):
+      return 'gis'
+    if(accidental == FLAT):
+      return 'as'
   if(pitch == 9):
     return 'a'
+  if(pitch == 10):
+    if(accidental == SHARP):
+      return 'ais'
+    if(accidental == FLAT):
+      return 'bes'
   if(pitch == 11):
     return 'h'
 
@@ -29,6 +58,11 @@ def getAccidentalSymbol(accidental):
     return FLAT
   if(accidental == "accidentalNatural"):
     return NATURAL
+  if(accidental == "accidentalDoubleSharp"):
+    return DOUBLE_SHARP
+  if(accidental == "accidentalDoubleFlat"):
+    return DOUBLE_FLAT
+    
     
 def note2pitch(note, accidental):
   pitch = int(note) % 12
@@ -55,12 +89,15 @@ def getNote(note):
   return pitchString
   
 
-def printChord (chord):
+def getChord (chord):
+  result = " "
   duration = chord.findall('durationType')
-  print(duration[0].text)
+  result += str(duration[0].text)
+
   for note in chord.findall('Note'):
-    note  = getNote(note)
-    print(note)
+    noteString = getNote(note)
+    result += " " + noteString
+  return result
 
 def convert () :
   root = ET.parse('skala.mscx').getroot()
@@ -76,7 +113,8 @@ def convert () :
         for voice in measure.findall('voice'):
           for child in list(voice):
             if(child.tag == "Chord"):
-              printChord(child)
+              chord = getChord(child)
+              print(chord)
            # if(child.tag == "Rest"):
              # print(child.tag)             
 
