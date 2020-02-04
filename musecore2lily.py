@@ -198,7 +198,7 @@ def convert (file) :
       lilypondCode += "staff" + staffId + " = {"
       measureNumber=1
       for measure in staff.findall('Measure'):
-       # print(str(measureNumber))
+        lilypondCode += ' \n' + '% ' + str(measureNumber) +  ' \n'
         measureNumber = measureNumber + 1
         for voice in measure.findall('voice'):
           for child in list(voice):
