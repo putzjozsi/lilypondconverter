@@ -21,6 +21,7 @@ def getPitchName(pitch, accidental):
       return 'des'
     if(accidental == DOUBLE_SHARP):
       return "hisis"
+    return 'cis'
 
   if(pitch == 2):
     if(accidental == DOUBLE_SHARP):
@@ -36,6 +37,7 @@ def getPitchName(pitch, accidental):
       return 'es'
     if(accidental == DOUBLE_FLAT):
       return "feses"
+    return 'dis'
 
   if(pitch == 4): 
     if (accidental == FLAT):
@@ -58,6 +60,7 @@ def getPitchName(pitch, accidental):
       return 'ges'
     if(accidental == DOUBLE_SHARP):
       return 'eisis'
+    return 'fis'
 
   if(pitch == 7):
     if(accidental == DOUBLE_SHARP):
@@ -73,6 +76,7 @@ def getPitchName(pitch, accidental):
       return 'as'
     if(accidental == DOUBLE_SHARP):
       return "gisis"
+    return 'gis'
 
   if(pitch == 9):
     if(accidental == DOUBLE_SHARP):
@@ -88,6 +92,7 @@ def getPitchName(pitch, accidental):
       return 'b'
     if(accidental == DOUBLE_FLAT):
       return "ceses"
+    return 'b'
    
   if(pitch == 11):
     if(accidental == FLAT):
@@ -213,7 +218,8 @@ def convert (file) :
   print(lilypondCode)
 
 #convert('accidentals.mscx')
-convert('szunetek-pontzott.mscx')
+#convert('szunetek-pontzott.mscx')
+convert('d-moll_vonosnegyes_4_szolam.mscx')
 
  
 
